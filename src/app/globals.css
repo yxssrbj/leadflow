@@ -1,26 +1,244 @@
 @import "tailwindcss";
 
+/* ————————————————————————————————————————————————————————————————
+   LeadFlow AI — "Obsidian Signal" design system
+   One committed dark cinematic theme. Tokens first, utilities after.
+   ———————————————————————————————————————————————————————————————— */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces — obsidian scale */
+  --ink-950: #070709;
+  --ink-900: #0b0b0e;
+  --ink-850: #101014;
+  --ink-800: #16161c;
+  --ink-750: #1d1d24;
+
+  /* Text */
+  --text-hi: #f4f3f1;
+  --text-mid: #a3a1a8;
+  --text-low: #6e6c76;
+
+  /* Accent — molten ember */
+  --ember-400: #ffb35c;
+  --ember-500: #ff8a3d;
+  --ember-600: #ff6a1f;
+  --ember-700: #e8551a;
+
+  /* Lines */
+  --line: rgba(255 255 255 / 0.08);
+  --line-strong: rgba(255 255 255 / 0.14);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 200ms;
+  --dur-slow: 700ms;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-ink-850: var(--ink-850);
+  --color-ink-800: var(--ink-800);
+  --color-ink-750: var(--ink-750);
+  --color-hi: var(--text-hi);
+  --color-mid: var(--text-mid);
+  --color-low: var(--text-low);
+  --color-ember-400: var(--ember-400);
+  --color-ember-500: var(--ember-500);
+  --color-ember-600: var(--ember-600);
+  --color-ember-700: var(--ember-700);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--ink-950);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink-950);
+  color: var(--text-hi);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ember-600);
+  color: #fff;
+}
+
+/* Scrollbar — thin, quiet */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-750) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--ink-750);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Focus — visible, branded, never removed */
+:focus-visible {
+  outline: 2px solid var(--ember-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ————————————————————— utilities ————————————————————— */
+
+/* Frosted glass card */
+.glass {
+  background: rgba(255 255 255 / 0.03);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-strong {
+  background: rgba(16 16 20 / 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+
+/* Molten gradient text */
+.text-ember {
+  background: linear-gradient(100deg, var(--ember-400) 0%, var(--ember-600) 55%, var(--ember-700) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ember gradient surface (buttons, chips) */
+.bg-ember {
+  background: linear-gradient(135deg, var(--ember-500) 0%, var(--ember-600) 60%, var(--ember-700) 100%);
+}
+
+/* Soft outer glow for accented elements */
+.glow-ember {
+  box-shadow:
+    0 0 24px rgba(255 106 31 / 0.28),
+    0 0 80px rgba(255 106 31 / 0.10);
+}
+
+/* Film grain — one fixed overlay, pure CSS noise via SVG data URI */
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hairline divider with a fading gradient */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+
+/* Above-fold hero entrance — pure CSS so it never depends on JS */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise-in {
+  animation: rise-in 0.9s var(--ease-out-expo) both;
+}
+.rise-in-1 { animation-delay: 0.08s; }
+.rise-in-2 { animation-delay: 0.18s; }
+.rise-in-3 { animation-delay: 0.28s; }
+.rise-in-4 { animation-delay: 0.4s; }
+
+/* Form field — one consistent input treatment everywhere */
+.field {
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background: rgba(255 255 255 / 0.03);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-hi);
+  transition: border-color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+.field::placeholder {
+  color: var(--text-low);
+}
+.field:hover {
+  border-color: var(--line-strong);
+}
+.field:focus {
+  border-color: var(--ember-500);
+  outline: none;
+  background: rgba(255 255 255 / 0.05);
+}
+select.field option {
+  background: var(--ink-850);
+  color: var(--text-hi);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 36s linear infinite;
+}
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+/* Slow ambient float for decorative layers */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -14px, 0); }
+}
+.animate-drift {
+  animation: drift 7s ease-in-out infinite;
+}
+
+/* Typing dots */
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+.typing-dot {
+  animation: typing-dot 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Preloader letter sweep */
+@keyframes preloader-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee,
+  .animate-drift,
+  .typing-dot {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
