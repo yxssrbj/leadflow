@@ -41,6 +41,9 @@ export default function SpeedToLeadDemo({
   const [callState, setCallState] = useState<{ status: "idle" | "calling" | "ringing" | "error"; message?: string }>({
     status: "idle",
   });
+  const [smsState, setSmsState] = useState<{ status: "idle" | "sending" | "sent" | "error"; message?: string }>({
+    status: "idle",
+  });
   const [pinRequired, setPinRequired] = useState(false);
   const [pin, setPin] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -127,6 +130,34 @@ export default function SpeedToLeadDemo({
     }
   }
 
+  async function handleRealSms() {
+    const info = readLeadFromForm();
+    if (!info) return;
+    setSmsState({ status: "sending" });
+    try {
+      const res = await fetch("/api/sms/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lead: info, pin, language: locale }),
+      });
+      const data = await res.json();
+      if (res.status === 401 && data.pinRequired) {
+        // Same demo-PIN contract as /api/voice/start — reveal the input.
+        setPinRequired(true);
+        setSmsState({ status: "idle" });
+        return;
+      }
+      if (!res.ok) {
+        setSmsState({ status: "error", message: data.error ?? t.smsError });
+        return;
+      }
+      track("sms_requested", { locale, business: business.id });
+      setSmsState({ status: "sent", message: `${t.smsSentPrefix}${info.phone}${t.smsSentSuffix}` });
+    } catch {
+      setSmsState({ status: "error", message: t.connectError });
+    }
+  }
+
   function reset() {
     setLead(null);
     setLeadId(null);
@@ -187,6 +218,14 @@ export default function SpeedToLeadDemo({
                   ? t.pinCta
                   : t.callCta}
           </button>
+          <button
+            type="button"
+            onClick={() => void handleRealSms()}
+            disabled={smsState.status === "sending" || smsState.status === "sent"}
+            className="rounded-full border border-line-strong px-5 py-3 text-sm font-semibold text-mid transition-all duration-300 hover:border-ember-500/60 hover:text-hi disabled:opacity-40"
+          >
+            {smsState.status === "sending" ? t.smsSending : t.smsCta}
+          </button>
         </form>
         {callState.status === "ringing" && callState.message && (
           <p className="mt-4 rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300">
@@ -196,6 +235,16 @@ export default function SpeedToLeadDemo({
         {callState.status === "error" && callState.message && (
           <p className="mt-4 rounded-xl border border-red-500/25 bg-red-500/10 px-4 py-2.5 text-xs text-red-300">
             {callState.message}
+          </p>
+        )}
+        {smsState.status === "sent" && smsState.message && (
+          <p className="mt-4 rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300">
+            {smsState.message}
+          </p>
+        )}
+        {smsState.status === "error" && smsState.message && (
+          <p className="mt-4 rounded-xl border border-red-500/25 bg-red-500/10 px-4 py-2.5 text-xs text-red-300">
+            {smsState.message}
           </p>
         )}
       </div>

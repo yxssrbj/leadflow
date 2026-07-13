@@ -37,6 +37,19 @@ column before scheduling anything, and don't build ahead of actual need.
 
 ## Tier 2 — once a pilot is signed
 
+> **Status (2026-07-13): Real SMS row executed** (pulled forward of a
+> signed pilot by explicit user decision). The speed-to-lead agent now runs
+> a real two-way SMS conversation: the demo's "Napisz do mnie" button sends
+> Ola's first text via the Twilio Messaging API (`/api/sms/start`), the
+> lead replies from their phone to the Twilio number, and the webhook
+> (`/api/sms/inbound`, signature-validated) continues the conversation to a
+> booked appointment. Same guards as real calls (`VOICE_DEMO_PIN` +
+> rate limits, plus a per-phone flood cap), same single-tenant scope
+> (`DEFAULT_BUSINESS_ID`), sessions in `lib/smsSessions.ts` (in-memory,
+> 24h TTL — same single-instance caveat as `callSessions.ts`). The
+> quotation and outbound agents still don't text — that part of this row
+> remains open for a real pilot.
+
 | Concern | Recommendation | Why |
 |---|---|---|
 | **Real SMS** | Twilio Messaging API (same account already used for Twilio Voice) | The sales pitch is "texts your leads back," but today only the demo simulates that over a chat UI — the quotation and outbound agents never send an actual text. |

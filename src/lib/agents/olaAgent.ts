@@ -41,7 +41,7 @@ export async function getOlaReply(
   history: ChatMessage[],
   language: Language = "pl",
   businessId?: string,
-  medium: "text" | "call" = "text",
+  medium: "text" | "call" | "sms" = "text",
 ): Promise<OlaReplyResult> {
   const config = await getBusinessConfig(businessId);
   const persona = config.agents.speedToLead;

@@ -9,7 +9,7 @@ export function openingLine(persona: AgentPersona, config: BusinessConfig): stri
   return `You are ${persona.name}, the AI ${persona.role} for ${config.businessName}, a ${config.vertical} offering ${config.services}.`;
 }
 
-export function languageRule(language: Language, medium: "text" | "call" = "text"): string {
+export function languageRule(language: Language, medium: "text" | "call" | "sms" = "text"): string {
   if (language === "en") {
     return medium === "call"
       ? "You speak ONLY in natural, conversational English, like a real dispatcher on a phone call — short and warm, no corporate stiffness."

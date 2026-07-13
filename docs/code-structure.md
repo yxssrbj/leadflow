@@ -23,6 +23,7 @@ web/
 │   │   ├── i18n/             locale list + dictionaries + getDictionary()
 │   │   ├── db.ts             flat-file store for analytics events only + nextBusinessSlots()
 │   │   ├── crm.ts             Postgres-backed leads/appointments/quotes, all scoped by businessId
+│   │   ├── smsSessions.ts     in-memory two-way-SMS conversation state, keyed by phone (24h TTL)
 │   │   ├── schema.ts          Drizzle table defs: business_configs, leads, appointments, quotes
 │   │   ├── postgres.ts        lazy Drizzle client singleton (needs DATABASE_URL)
 │   │   ├── adminAuth.ts       PIN gate for /admin (ADMIN_PIN env var)
@@ -56,9 +57,14 @@ login owns exactly one business.
 
 Notable API routes beyond the three agents: `/api/track` (first-party demo
 analytics, allowlisted events), `/api/admin/reset` (reseeds one business's
-CRM data, keeps analytics), and `/api/voice/start` (real Twilio call —
-guarded by `VOICE_DEMO_PIN` plus per-IP and global daily rate limits; stays
-single-tenant, always filed under the default business). `/admin/businesses`
+CRM data, keeps analytics), `/api/voice/start` (real Twilio call — guarded
+by `VOICE_DEMO_PIN` plus per-IP and global daily rate limits; stays
+single-tenant, always filed under the default business), and the real
+two-way SMS pair: `/api/sms/start` (same PIN + rate-limit guards as voice;
+sends Ola's first text and opens an `lib/smsSessions.ts` session) and
+`/api/sms/inbound` (Twilio Messaging webhook — X-Twilio-Signature
+validated, per-phone flood cap, replies in-band as TwiML, books
+appointments exactly like the voice gather route). `/admin/businesses`
 (under `[locale]`, PIN-gated by `ADMIN_PIN`) is the create/edit screen for
 `BusinessConfig` records — see [agent-templates.md](agent-templates.md); this
 is a separate, deliberately simpler mechanism for the agency owner's own

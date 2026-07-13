@@ -76,6 +76,16 @@ export function limitVoiceRequest(req: NextRequest): RateLimitResult {
   return rateLimit("voice:global:day", envInt("VOICE_RATE_GLOBAL_PER_DAY", 10), DAY_MS);
 }
 
+/** Real outbound SMS threads: same shape as voice, slightly higher defaults
+ * since a text costs a fraction of a call. Covers starting a thread only —
+ * the inbound webhook has its own per-phone counter (see api/sms/inbound). */
+export function limitSmsRequest(req: NextRequest): RateLimitResult {
+  const ip = clientIp(req);
+  const perIp = rateLimit(`sms:ip:${ip}`, envInt("SMS_RATE_PER_HOUR", 5), 60 * 60_000);
+  if (!perIp.ok) return perIp;
+  return rateLimit("sms:global:day", envInt("SMS_RATE_GLOBAL_PER_DAY", 30), DAY_MS);
+}
+
 export const RATE_LIMIT_MESSAGE = {
   pl: "Zbyt wiele żądań — spróbuj ponownie za chwilę.",
   en: "Too many requests — please try again in a moment.",

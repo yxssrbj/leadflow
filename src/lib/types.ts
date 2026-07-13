@@ -64,7 +64,8 @@ export type AnalyticsEventName =
   | "booking_completed"
   | "quote_completed"
   | "lead_closed"
-  | "call_requested";
+  | "call_requested"
+  | "sms_requested";
 
 export interface AnalyticsEvent {
   id: string;

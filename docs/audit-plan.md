@@ -186,6 +186,10 @@ technical interest.
    your leads back," but today only the phone-call path uses real Twilio;
    the chat demo is a simulated SMS thread. Wiring actual SMS send/receive
    is the natural "make the pilot real" step referenced in `plan.md` §6.
+   *Status (2026-07-13): done for the speed-to-lead agent — real two-way
+   SMS via `/api/sms/start` + `/api/sms/inbound`, see
+   `docs/tech-stack-roadmap.md` Tier 2 status note. Quotation/outbound
+   agents still simulate.*
 7. **Per-client auth on the dashboard** — once a pilot client has their own
    real leads in there, the dashboard can't stay a public unauthenticated
    URL. Simplest viable version: a per-client magic-link or basic-auth

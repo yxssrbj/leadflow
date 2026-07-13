@@ -13,6 +13,7 @@ const ALLOWED_EVENTS: ReadonlySet<string> = new Set([
   "quote_completed",
   "lead_closed",
   "call_requested",
+  "sms_requested",
 ] satisfies AnalyticsEventName[]);
 
 // First-party, anonymous demo analytics. Fire-and-forget from the client

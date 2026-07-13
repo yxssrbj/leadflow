@@ -1,5 +1,35 @@
 # Session handoff — resume point
 
+> **STATUS (2026-07-13): real two-way SMS is DONE and verified live** —
+> a real SMS conversation (button → Twilio text → replies from a real
+> phone → booked appointment on the solartech dashboard) completed
+> end-to-end. Implementation matches the plan at
+> `C:\Users\yasse\.claude\plans\mossy-wondering-bear.md`. **Not yet
+> committed** — the SMS work is uncommitted on top of the 5 existing
+> commits on master (nothing pushed; no remote configured). Demo logins:
+> solartech@leadflowai.demo and budmax@leadflowai.demo — passwords are in
+> the 2026-07-13 chat transcript, or reset via Supabase dashboard.
+>
+> Hard-won operational facts from the live SMS debugging (all fixed, keep
+> in mind if SMS breaks again):
+> 1. **Twilio trial caps messages at ONE segment** (error 30044). Polish
+>    diacritics force UCS-2 (70 chars/segment) — `prepareSmsBody()` in
+>    `lib/twilio.ts` strips diacritics + truncates to 120 chars, and the
+>    SMS prompt asks for <100-char diacritic-free replies.
+> 2. **Twilio signs webhooks with the PRIMARY auth token only.** The env
+>    had a secondary/rotated token — API calls worked, signature validation
+>    403'd. `.env.local`'s TWILIO_AUTH_TOKEN now holds the primary.
+> 3. **Polish carriers rewrite US long-code senders to alphanumeric IDs** —
+>    the lead sees an "alert" with no reply box. Workaround: compose a new
+>    SMS to the Twilio number (+1 350 600 4824) — the session is keyed by
+>    the lead's phone, so it continues fine. Real fix for a pilot: a Polish
+>    Twilio number (requires paid account + PL regulatory bundle).
+> 4. `VOICE_DEMO_PIN=2468` was added to `.env.local` (gates calls + SMS).
+> 5. Dev-server gotcha (bit us twice): after creating new routes or many
+>    edits, Turbopack can serve stale state (404-everything, or split
+>    in-memory module state across routes). Fix: kill server, `rm -rf
+>    .next`, restart.
+
 Written to bridge into a new chat session. Read this first, then the other
 docs it links to, before doing anything else.
 
