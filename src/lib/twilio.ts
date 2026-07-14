@@ -94,10 +94,15 @@ export function getTwilioVoiceConfig(lang: "pl" | "en"): { language: CallLanguag
 }
 
 // Kokoro genuinely supports English (unlike Polish — see olaAgent.ts), so it's
-// used as Ola's real voice only in English-mode calls. Polish calls always
-// stay on Twilio's built-in Polly voice, which pronounces Polish correctly.
+// only ever a candidate for English-mode calls. But it's an opt-in extra —
+// a separate TTS server that must be reachable at KOKORO_URL — so English
+// calls fall back to Twilio's built-in Polly voice (which handles English
+// fine too) whenever KOKORO_URL isn't actually configured. Without this
+// check, an English call in an environment with no Kokoro server reachable
+// (e.g. Vercel with nothing set) would 502 trying to fetch synthesized audio
+// from the http://localhost:8880 default in voice/audio/route.ts.
 export function shouldUseKokoro(lang: "pl" | "en"): boolean {
-  return lang === "en";
+  return lang === "en" && Boolean(process.env.KOKORO_URL);
 }
 
 export function kokoroAudioUrl(text: string): string {
