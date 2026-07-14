@@ -3,9 +3,9 @@
 // build if a key is missing in translation. See docs/code-structure.md.
 const pl = {
   meta: {
-    title: "LeadFlow AI — Agenci AI dla firm instalacyjnych",
+    title: "LeadFlow AI — Więcej umówionych klientów dla firm usługowych",
     description:
-      "Agenci AI, którzy odpowiadają, kwalifikują, wyceniają i umawiają Twoje leady w niecałe 60 sekund — 24/7.",
+      "Odpowiadamy na każde zapytanie w niecałe 60 sekund, kwalifikujemy je i umawiamy spotkania prosto do Twojego kalendarza — 24/7. Ty robisz swoje, kalendarz zapełnia się sam.",
   },
   nav: {
     brand: "LeadFlow AI",
@@ -17,7 +17,7 @@ const pl = {
   },
   footer: {
     tagline:
-      "Agenci AI, którzy odpowiadają, kwalifikują, wyceniają i umawiają — żeby firmy instalacyjne nie traciły już żadnego leada.",
+      "Odpowiadamy, kwalifikujemy, wyceniamy i umawiamy Twoich klientów — żeby żadne zapytanie nie przepadło, zanim zdążysz odebrać telefon.",
     productHeading: "Produkt",
     demo: "Demo na żywo",
     dashboard: "Panel",
@@ -27,19 +27,25 @@ const pl = {
     speedToLead: "Szybki kontakt",
     quotation: "Wyceny",
     outbound: "Reaktywacja leadów",
-    copyright: "© 2026 LeadFlow AI. Dla firm instalacyjnych, które nie chcą oddawać zleceń konkurencji.",
+    copyright: "© 2026 LeadFlow AI. Dla firm usługowych, które nie chcą oddawać klientów konkurencji.",
   },
   hero: {
-    badge: "Agenci AI dla firm instalacyjnych",
-    titleBefore: "Koniec z leadami straconymi przez ",
+    badge: "Dla firm usługowych w Polsce",
+    titleBefore: "Koniec z klientami straconymi przez ",
     titleHighlight: "nieodebrany telefon",
     titleAfter: ".",
     subtitle:
-      "LeadFlow wdraża agentów AI, którzy odpisują każdemu leadowi w niecałe 60 sekund, kwalifikują go, wysyłają konkretne wyceny i umawiają audyty prosto do Twojego kalendarza — wieczorami, w weekendy i w szczycie sezonu.",
+      "Płacisz za reklamy i polecenia, a klient i tak trafia do firmy, która odezwie się pierwsza. LeadFlow odpowiada na każde zapytanie w niecałe 60 sekund, kwalifikuje je i umawia spotkanie prosto do Twojego kalendarza — wieczorami, w weekendy, w szczycie sezonu. Efekt: pełniejszy kalendarz bez ani jednej straconej szansy.",
+    ctaConsult: "Umów bezpłatną konsultację",
     ctaDemo: "Wypróbuj demo na żywo",
-    ctaDashboard: "Zobacz panel",
+    trust: [
+      "Odpowiedź w <60 s, 24/7",
+      "Wdrożenie w dni, nie miesiące",
+      "30-dniowy pilotaż z gwarancją zwrotu",
+    ],
     disclaimer: "To demo to prawdziwy produkt — żywe AI, prawdziwa rozmowa, prawdziwe umówione spotkanie.",
     chat: {
+      aiTag: "✦ Agent AI",
       title: "Ola · SolarTech Kraków",
       subtitle: "Nowy lead · odpowiedź w 41 sekund",
       bubbleLead: "Rachunek za prąd wyszedł 1 400 zł za dwa miesiące. Ile kosztowałaby fotowoltaika na domu ok. 150 m²?",
@@ -53,65 +59,102 @@ const pl = {
     },
   },
   stats: [
-    { value: "30–60%", label: "telefonów do firm instalacyjnych zostaje bez odpowiedzi" },
+    { value: "30–60%", label: "telefonów do firm usługowych zostaje bez odpowiedzi" },
     { value: "78%", label: "klientów kupuje od firmy, która odezwie się pierwsza" },
     { value: "<60 s", label: "czas reakcji agenta, 24/7/365" },
-    { value: "30–80 tys. zł", label: "wartość instalacji traconej z każdym straconym leadem" },
+    { value: "tysiące zł", label: "wartość zleceń traconych z każdym nieodebranym zapytaniem" },
   ],
+  problem: {
+    eyebrow: "Problem",
+    title: "Każdy nieodebrany telefon to podpisana umowa — dla kogoś innego",
+    subtitle:
+      "Klient nie czeka do poniedziałku. Jeśli nie odpowiesz Ty, w ciągu godziny odpowie konkurencja.",
+    beforeLabel: "Bez LeadFlow",
+    before: [
+      "Telefon po 18:00 trafia na pocztę głosową",
+      "Zapytanie ze strony czeka w skrzynce do poniedziałku",
+      "Wycena zajmuje 2–3 dni robocze",
+      "O follow-upie nikt nie pamięta",
+      "Stare zapytania w CRM nigdy nie dostają drugiej szansy",
+      "Budżet reklamowy pracuje na konkurencję",
+    ],
+    afterLabel: "Z LeadFlow",
+    after: [
+      "Odpowiedź w mniej niż 60 sekund, o każdej porze",
+      "Każde zapytanie od razu rusza kwalifikującą rozmową",
+      "Rozpisana wycena trafia do klienta w kilka minut",
+      "Follow-up dzieje się sam",
+      "Uśpieni klienci dostają telefon albo SMS z powrotem",
+      "Każda złotówka z reklam ma szansę zostać zleceniem",
+    ],
+    result: "Efekt: żaden klient nie stygnie, podczas gdy Ty jesteś na zleceniu albo śpisz.",
+  },
   howItWorks: {
     eyebrow: "Jak to działa",
-    title: "Od nieodebranego telefonu do umówionego audytu — automatycznie",
+    title: "Od nieodebranego telefonu do umówionego klienta — automatycznie",
     steps: [
       {
-        title: "Podłącz źródła leadów",
-        desc: "Formularze na stronie, nieodebrane połączenia, Messenger, lead ads z Facebooka i Google oraz Twój CRM — wdrożenie w dni, nie miesiące.",
+        title: "Podłączamy Twoje źródła klientów",
+        desc: "Formularze na stronie, nieodebrane połączenia, Messenger, reklamy z Facebooka i Google oraz Twój CRM — wdrożenie w dni, nie miesiące.",
       },
       {
-        title: "Agenci pracują nad każdym leadem od razu",
-        desc: "Ola odpisuje i kwalifikuje, Kuba wysyła konkretne liczby, Marek odzyskuje leady, które już spisałeś na straty.",
+        title: "Każde zapytanie dostaje odpowiedź od razu",
+        desc: "Ola odpisuje i kwalifikuje, Kuba wysyła konkretne liczby, Marek wraca do klientów, których już spisałeś na straty.",
       },
       {
         title: "Kalendarz zapełnia się sam",
-        desc: "Umówione audyty trafiają do Twojego kalendarza z pełnym kontekstem — zakres, pilność, temat dotacji — zanim powiesz choć słowo.",
+        desc: "Umówione spotkania trafiają do Twojego kalendarza z pełnym kontekstem — zakres, pilność, budżet — zanim powiesz choć słowo.",
       },
     ],
   },
   agentsSection: {
     eyebrow: "Poznaj agentów",
-    title: "Trzej agenci. Jeden lejek, który nigdy nie śpi.",
+    title: "Trzej agenci. Każdy łata inną dziurę, którą uciekają Ci pieniądze.",
+    problemLabel: "Problem",
+    solutionLabel: "Rozwiązanie",
+    resultLabel: "Efekt dla Ciebie",
     agents: [
       {
         tab: "speed-to-lead",
         name: "Ola",
-        role: "Agent Szybkiego Kontaktu",
-        desc: "Odpisuje każdemu nowemu leadowi w niecałe 60 sekund, zadaje właściwe pytania kwalifikujące i umawia audyt, zanim konkurencja odsłucha pocztę głosową.",
-        points: ["Odpowiada 24/7, także w szczycie sezonu", "Kwalifikuje zakres, pilność i temat dotacji", "Umawia spotkania prosto do kalendarza"],
+        role: "Pierwszy kontakt z klientem",
+        problem:
+          "Klient, który nie dostaje odpowiedzi w godzinę, dzwoni do konkurencji — a Ty właśnie zapłaciłeś za to zapytanie reklamą.",
+        solution:
+          "Ola odpisuje w niecałe 60 sekund o każdej porze, zadaje pytania kwalifikujące i od razu proponuje konkretne terminy spotkania.",
+        result: "Umawiasz klientów, zanim konkurencja w ogóle odsłucha pocztę głosową.",
       },
       {
         tab: "quotation",
         name: "Kuba",
-        role: "Agent Wycen",
-        desc: "Zbiera szczegóły przez SMS i w kilka minut przygotowuje realną, rozpisaną na pozycje wstępną wycenę — klient porównujący oferty dostaje liczby najpierw od Ciebie.",
-        points: ["Konkretne pozycje w zł, nie widełki", "Zna Twój cennik", "Każda wycena trafia do panelu"],
+        role: "Wyceny w kilka minut",
+        problem:
+          "Ręczna wycena zajmuje 2–3 dni. Klient porównujący oferty podpisuje w tym czasie umowę z tym, kto przysłał liczby pierwszy.",
+        solution:
+          "Kuba dopytuje o brakujące szczegóły i wysyła rozpisaną na pozycje wstępną wycenę w kilka minut — na podstawie Twojego cennika.",
+        result: "Twoje liczby docierają do klienta pierwsze i to one stają się punktem odniesienia.",
       },
       {
         tab: "outbound",
         name: "Marek",
-        role: "Agent Reaktywacji Leadów",
-        desc: "Pracuje nad martwymi leadami z Twojego CRM — tymi, na które nikt nie ma czasu — i zamienia ciszę w umówione audyty.",
-        points: ["Osobisty kontakt, nie masowy spam", "Grzecznie odpuszcza po wyraźnym „nie”", "Odzyskuje przychód, za który już zapłaciłeś"],
+        role: "Powroty do uśpionych klientów",
+        problem:
+          "W CRM leżą dziesiątki zapytań, za które już zapłaciłeś — i nikt nie ma czasu do nich wrócić.",
+        solution:
+          "Marek odzywa się do nich osobiście, proponuje termin, a po wyraźnym „nie” grzecznie odpuszcza — bez spamu.",
+        result: "Odzyskujesz zlecenia z zapytań, które już spisałeś na straty.",
       },
     ],
     cta: "Porozmawiaj z:",
   },
   pricing: {
     eyebrow: "Cennik",
-    title: "Jedna umówiona instalacja spłaca cały rok",
+    title: "Jedno umówione zlecenie potrafi spłacić cały rok",
     subtitle:
       "Każdy plan zaczyna się od 30-dniowego pilotażu: mierzalne, umówione spotkania w pierwszym miesiącu albo zwrot pieniędzy. Ceny netto, do każdej doliczamy 23% VAT (faktura VAT).",
     mostPopular: "Najczęściej wybierany",
     perMonth: "/mc",
-    ctaLabel: "Zacznij od dema",
+    ctaLabel: "Umów bezpłatną konsultację",
     tiers: [
       {
         name: "Starter",
@@ -137,14 +180,15 @@ const pl = {
     ],
   },
   finalCta: {
-    title: "Następny lead, który wypełni Twój formularz, dostanie odpowiedź w 60 sekund. Zobacz to na żywo.",
-    cta: "Uruchom demo — bez rejestracji",
+    title: "Ilu klientów uciekło Ci w tym miesiącu, bo nikt nie odpisał na czas? Sprawdźmy to razem.",
+    cta: "Umów bezpłatną konsultację — 15 minut",
+    secondary: "albo wypróbuj demo bez rejestracji →",
   },
   contact: {
-    eyebrow: "Kontakt",
-    title: "Porozmawiaj z człowiekiem o swoich agentach AI",
+    eyebrow: "Bezpłatna konsultacja",
+    title: "Zobacz, ile zapytań Ci ucieka — i co da ich odzyskanie",
     subtitle:
-      "Opowiedz nam, jak dziś trafiają do Ciebie leady, a pokażemy dokładnie, co zrobiłby z nimi agent — 15-minutowa rozmowa, bez zobowiązań.",
+      "Opowiedz nam, jak dziś trafiają do Ciebie klienci, a w 15 minut pokażemy, gdzie tracisz zapytania i jak wyglądałoby to z LeadFlow w Twojej firmie. Bez zobowiązań i bez technicznego żargonu.",
     whatsapp: "WhatsApp",
     whatsappValue: "Napisz do nas bezpośrednio",
     call: "Zadzwoń",

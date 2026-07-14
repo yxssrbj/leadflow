@@ -5,9 +5,9 @@ import type pl from "./pl";
 // not a runtime blank string.
 const en: typeof pl = {
   meta: {
-    title: "LeadFlow AI — AI agents for installation companies",
+    title: "LeadFlow AI — More booked customers for service businesses",
     description:
-      "AI agents that answer, qualify, quote, and book your leads in under 60 seconds — 24/7.",
+      "We answer every inquiry in under 60 seconds, qualify it, and book appointments straight into your calendar — 24/7. You do the work, your calendar fills itself.",
   },
   nav: {
     brand: "LeadFlow AI",
@@ -19,7 +19,7 @@ const en: typeof pl = {
   },
   footer: {
     tagline:
-      "AI agents that answer, qualify, quote, and book — so installation companies stop losing leads to the competition.",
+      "We answer, qualify, quote, and book your customers — so no inquiry slips away before you can pick up the phone.",
     productHeading: "Product",
     demo: "Live demo",
     dashboard: "Dashboard",
@@ -29,19 +29,25 @@ const en: typeof pl = {
     speedToLead: "Speed to lead",
     quotation: "Quotation",
     outbound: "Lead revival",
-    copyright: "© 2026 LeadFlow AI. For installation companies that don't want to hand jobs to the competition.",
+    copyright: "© 2026 LeadFlow AI. For service businesses that don't want to hand customers to the competition.",
   },
   hero: {
-    badge: "AI agents for installation companies",
-    titleBefore: "Stop losing leads to a ",
+    badge: "For service businesses in Poland",
+    titleBefore: "Stop losing customers to a ",
     titleHighlight: "missed phone call",
     titleAfter: ".",
     subtitle:
-      "LeadFlow deploys AI agents that reply to every lead in under 60 seconds, qualify them, send concrete quotes, and book site audits straight into your calendar — nights, weekends, and peak season included.",
+      "You pay for ads and referrals, yet the customer still goes to whoever answers first. LeadFlow replies to every inquiry in under 60 seconds, qualifies it, and books the appointment straight into your calendar — nights, weekends, and peak season included. The result: a fuller calendar with zero missed opportunities.",
+    ctaConsult: "Book a free consultation",
     ctaDemo: "Try the live demo",
-    ctaDashboard: "See the dashboard",
+    trust: [
+      "Replies in <60 s, 24/7",
+      "Live in days, not months",
+      "30-day pilot with money-back guarantee",
+    ],
     disclaimer: "This demo is the real product — live AI, a real conversation, a real booked appointment.",
     chat: {
+      aiTag: "✦ AI Agent",
       title: "Ola · SolarTech Kraków",
       subtitle: "New lead · replied in 41 seconds",
       bubbleLead: "Our electricity bill came out to 1,400 zł over two months. What would solar panels cost for a house around 150 m²?",
@@ -55,65 +61,101 @@ const en: typeof pl = {
     },
   },
   stats: [
-    { value: "30–60%", label: "of calls to installation companies go unanswered" },
+    { value: "30–60%", label: "of calls to service businesses go unanswered" },
     { value: "78%", label: "of customers buy from whoever responds first" },
     { value: "<60 s", label: "agent response time, 24/7/365" },
-    { value: "$8k–20k", label: "installation value lost with every dropped lead" },
+    { value: "1000s", label: "in job value lost with every dropped inquiry" },
   ],
+  problem: {
+    eyebrow: "The problem",
+    title: "Every missed call is a signed contract — for someone else",
+    subtitle: "A customer doesn't wait until Monday. If you don't reply, a competitor will within the hour.",
+    beforeLabel: "Without LeadFlow",
+    before: [
+      "A call after 6pm goes straight to voicemail",
+      "A web inquiry sits in an inbox until Monday",
+      "A quote takes 2–3 business days",
+      "Nobody remembers to follow up",
+      "Old inquiries in the CRM never get a second look",
+      "Your ad budget works for the competition",
+    ],
+    afterLabel: "With LeadFlow",
+    after: [
+      "A reply in under 60 seconds, any hour",
+      "Every inquiry instantly starts a qualifying conversation",
+      "A line-itemed quote reaches the customer in minutes",
+      "Follow-up happens by itself",
+      "Dormant customers get a call or text bringing them back",
+      "Every ad dollar gets a chance to become a job",
+    ],
+    result: "Result: no customer goes cold while you're on a job or asleep.",
+  },
   howItWorks: {
     eyebrow: "How it works",
-    title: "From missed call to booked audit — automatically",
+    title: "From missed call to booked customer — automatically",
     steps: [
       {
-        title: "Connect your lead sources",
-        desc: "Web forms, missed calls, Messenger, Facebook and Google lead ads, and your CRM — live in days, not months.",
+        title: "We connect your customer sources",
+        desc: "Web forms, missed calls, Messenger, Facebook and Google ads, and your CRM — live in days, not months.",
       },
       {
-        title: "Agents work every lead instantly",
-        desc: "Ola replies and qualifies, Kuba sends real numbers, Marek revives the leads you'd already written off.",
+        title: "Every inquiry gets an instant answer",
+        desc: "Ola replies and qualifies, Kuba sends real numbers, Marek goes back to the customers you'd already written off.",
       },
       {
         title: "Your calendar fills itself",
-        desc: "Booked audits land in your calendar with full context — scope, urgency, subsidy interest — before you say a word.",
+        desc: "Booked appointments land in your calendar with full context — scope, urgency, budget — before you say a word.",
       },
     ],
   },
   agentsSection: {
     eyebrow: "Meet the agents",
-    title: "Three agents. One funnel that never sleeps.",
+    title: "Three agents. Each one plugs a different hole your money leaks through.",
+    problemLabel: "Problem",
+    solutionLabel: "Solution",
+    resultLabel: "What you get",
     agents: [
       {
         tab: "speed-to-lead",
         name: "Ola",
-        role: "Speed-to-Lead Agent",
-        desc: "Replies to every new lead in under 60 seconds, asks the right qualifying questions, and books an audit before the competition even checks their voicemail.",
-        points: ["Responds 24/7, including peak season", "Qualifies scope, urgency, and subsidy interest", "Books appointments straight into the calendar"],
+        role: "First contact with every customer",
+        problem:
+          "A customer who doesn't hear back within the hour calls your competitor — and you just paid for that inquiry with your ad budget.",
+        solution:
+          "Ola replies in under 60 seconds at any hour, asks the right qualifying questions, and immediately offers concrete appointment times.",
+        result: "You book customers before the competition even checks their voicemail.",
       },
       {
         tab: "quotation",
         name: "Kuba",
-        role: "Quotation Agent",
-        desc: "Gathers details over SMS and puts together a real, line-itemed preliminary quote in minutes — a customer comparing offers gets numbers from you first.",
-        points: ["Real line items, not vague ranges", "Knows your pricing", "Every quote lands in the dashboard"],
+        role: "Quotes in minutes",
+        problem:
+          "A manual quote takes 2–3 days. A customer comparing offers signs with whoever sent numbers first.",
+        solution:
+          "Kuba asks for the missing details and sends a line-itemed preliminary quote in minutes — based on your pricing.",
+        result: "Your numbers reach the customer first, and they become the benchmark.",
       },
       {
         tab: "outbound",
         name: "Marek",
-        role: "Outbound Revival Agent",
-        desc: "Works the dead leads sitting in your CRM — the ones nobody has time for — and turns silence into booked audits.",
-        points: ["Personal outreach, not mass spam", "Gracefully backs off after a clear no", "Recovers revenue you already paid to generate"],
+        role: "Wins back dormant customers",
+        problem:
+          "Dozens of inquiries you already paid for sit in your CRM — and nobody has time to go back to them.",
+        solution:
+          "Marek reaches out personally, proposes a time, and gracefully backs off after a clear no — no spam.",
+        result: "You recover jobs from inquiries you'd already written off.",
       },
     ],
     cta: "Talk to:",
   },
   pricing: {
     eyebrow: "Pricing",
-    title: "One booked installation pays for the whole year",
+    title: "One booked job can pay for the whole year",
     subtitle:
       "Every plan starts with a 30-day paid pilot: measurable, booked appointments in the first month or your money back. Prices are net; 23% VAT is added on the invoice.",
     mostPopular: "Most popular",
     perMonth: "/mo",
-    ctaLabel: "Start with the demo",
+    ctaLabel: "Book a free consultation",
     tiers: [
       {
         name: "Starter",
@@ -139,14 +181,15 @@ const en: typeof pl = {
     ],
   },
   finalCta: {
-    title: "The next lead who fills out your form gets a reply in 60 seconds. See it live.",
-    cta: "Launch the demo — no signup",
+    title: "How many customers slipped away this month because nobody replied in time? Let's find out together.",
+    cta: "Book a free consultation — 15 minutes",
+    secondary: "or try the demo, no signup →",
   },
   contact: {
-    eyebrow: "Contact",
-    title: "Talk to a human about your AI agents",
+    eyebrow: "Free consultation",
+    title: "See how many inquiries you're losing — and what winning them back is worth",
     subtitle:
-      "Tell us how leads reach you today, and we'll show you exactly what an agent would do with them — a 15-minute, no-obligation call.",
+      "Tell us how customers reach you today, and in 15 minutes we'll show you where inquiries slip away and what LeadFlow would look like in your business. No obligation, no technical jargon.",
     whatsapp: "WhatsApp",
     whatsappValue: "Message us directly",
     call: "Call",
