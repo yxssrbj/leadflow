@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Anthropic from "@anthropic-ai/sdk";
-import { getClient, MODEL, clientError } from "@/lib/anthropic";
+import { getClient, defaultModel, clientError } from "@/lib/anthropic";
 import { addAppointment, getLead, updateLead } from "@/lib/crm";
 import { nextBusinessSlots } from "@/lib/db";
 import { getBusinessConfig } from "@/lib/agents/configs";
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
 
   const slots = nextBusinessSlots(language);
   const response = await client.messages.create({
-    model: config.model?.outbound?.model ?? MODEL,
+    model: config.model?.outbound?.model ?? defaultModel(),
     max_tokens: config.model?.outbound?.maxTokens ?? 400,
     system: buildOutboundPrompt(config, language, lead, slots),
     tools: [bookAppointmentToolMinimal(language, config.appointmentLabel), closeLeadTool(language)],

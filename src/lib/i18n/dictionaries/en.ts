@@ -32,7 +32,7 @@ const en: typeof pl = {
     copyright: "© 2026 LeadFlow AI. For installation companies that don't want to hand jobs to the competition.",
   },
   hero: {
-    badge: "AI agents for solar and heat-pump installers",
+    badge: "AI agents for installation companies",
     titleBefore: "Stop losing leads to a ",
     titleHighlight: "missed phone call",
     titleAfter: ".",
@@ -117,22 +117,22 @@ const en: typeof pl = {
     tiers: [
       {
         name: "Starter",
-        price: "1,500 zł",
-        setup: "3,000 zł setup",
+        price: "356 zł",
+        setup: "497 zł setup",
         desc: "The speed-to-lead essential for a single crew.",
         features: ["Speed-to-lead agent (Ola)", "Web form + missed-call capture", "Calendar booking", "Leads dashboard"],
       },
       {
         name: "Growth",
-        price: "2,500 zł",
-        setup: "4,500 zł setup",
+        price: "468 zł",
+        setup: "589 zł setup",
         desc: "Add instant quotes and win customers who are comparing offers.",
         features: ["Everything in Starter", "Quotation agent (Kuba)", "Pricing guide tuned to your business", "Quote tracking and follow-up"],
       },
       {
         name: "Full Pipeline",
-        price: "3,500 zł",
-        setup: "6,000 zł setup",
+        price: "572 zł",
+        setup: "638 zł setup",
         desc: "The complete funnel, including reviving dead leads.",
         features: ["Everything in Growth", "Outbound revival agent (Marek)", "Works your dead CRM leads", "Priority support and tuning"],
       },

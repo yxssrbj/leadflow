@@ -1,19 +1,29 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createMockClient } from "./mock";
+import { createOpenAIClient } from "./providers/openai";
 
 export const MODEL = "claude-sonnet-5";
+const OPENAI_MODEL = "gpt-4.1";
 
 // Where agent replies come from. Switch with AGENT_PROVIDER in web/.env.local:
 //   mock     — scripted Polish replies, no credentials, no cost (test the flow)
 //   vertex   — real Claude via Google Vertex AI (free trial credits, gcloud auth)
 //   anthropic— real Claude via an Anthropic API key
+//   openai   — real GPT via an OpenAI API key
 // If AGENT_PROVIDER is unset, we use Anthropic when a key is present, else mock.
-export type AgentProvider = "mock" | "vertex" | "anthropic";
+export type AgentProvider = "mock" | "vertex" | "anthropic" | "openai";
 
 export function activeProvider(): AgentProvider {
   const p = (process.env.AGENT_PROVIDER || "").toLowerCase();
-  if (p === "mock" || p === "vertex" || p === "anthropic") return p;
+  if (p === "mock" || p === "vertex" || p === "anthropic" || p === "openai") return p;
   return process.env.ANTHROPIC_API_KEY ? "anthropic" : "mock";
+}
+
+// Model to fall back to when a BusinessConfig doesn't override one for the
+// active provider — vendors don't share model names, so MODEL alone
+// (Anthropic's) would be wrong once AGENT_PROVIDER=openai.
+export function defaultModel(): string {
+  return activeProvider() === "openai" ? OPENAI_MODEL : MODEL;
 }
 
 // The minimal slice of the Anthropic client the agent routes actually use.
@@ -46,6 +56,12 @@ export async function getClient(): Promise<AgentClient | null> {
     }
   }
 
+  if (provider === "openai") {
+    if (!process.env.OPENAI_API_KEY) return null;
+    console.log("[agents] provider=openai");
+    return createOpenAIClient();
+  }
+
   if (!process.env.ANTHROPIC_API_KEY) return null;
   console.log("[agents] provider=anthropic");
   return new Anthropic() as unknown as AgentClient;
@@ -55,6 +71,9 @@ export async function getClient(): Promise<AgentClient | null> {
 export function clientError(): string {
   if (activeProvider() === "vertex") {
     return "Vertex is selected but the client couldn't start. Run `gcloud auth application-default login`, set ANTHROPIC_VERTEX_PROJECT_ID (and CLOUD_ML_REGION) in web/.env.local, and restart the dev server.";
+  }
+  if (activeProvider() === "openai") {
+    return "The server is missing OPENAI_API_KEY. Add it to web/.env.local (see .env.local.example) and restart the dev server — or set AGENT_PROVIDER=mock to test without a key.";
   }
   return "The server is missing ANTHROPIC_API_KEY. Add it to web/.env.local (see .env.local.example) and restart the dev server — or set AGENT_PROVIDER=mock to test without a key.";
 }

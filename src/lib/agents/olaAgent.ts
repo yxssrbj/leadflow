@@ -1,5 +1,5 @@
 import type Anthropic from "@anthropic-ai/sdk";
-import { MODEL } from "@/lib/anthropic";
+import { defaultModel } from "@/lib/anthropic";
 import type { AgentClient } from "@/lib/anthropic";
 import { nextBusinessSlots } from "@/lib/db";
 import type { ChatMessage } from "@/lib/types";
@@ -62,7 +62,7 @@ export async function getOlaReply(
 
   const slots = nextBusinessSlots(language);
   const response = await client.messages.create({
-    model: config.model?.speedToLead?.model ?? MODEL,
+    model: config.model?.speedToLead?.model ?? defaultModel(),
     max_tokens: config.model?.speedToLead?.maxTokens ?? 400,
     system: buildSpeedToLeadPrompt(config, language, slots, medium),
     tools: [bookAppointmentTool(language, config.appointmentLabel)],

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Anthropic from "@anthropic-ai/sdk";
-import { getClient, MODEL, clientError } from "@/lib/anthropic";
+import { getClient, defaultModel, clientError } from "@/lib/anthropic";
 import { addLead, addQuote } from "@/lib/crm";
 import { getBusinessConfig } from "@/lib/agents/configs";
 import { buildQuotationPrompt } from "@/lib/agents/prompts/quotation";
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
   ];
 
   const response = await client.messages.create({
-    model: config.model?.quotation?.model ?? MODEL,
+    model: config.model?.quotation?.model ?? defaultModel(),
     max_tokens: config.model?.quotation?.maxTokens ?? 700,
     system: buildQuotationPrompt(config, language),
     tools: [generateQuoteTool(language)],

@@ -63,8 +63,9 @@ export interface BusinessConfig {
   // Quote record (not just config), so display and history stay correct.
   subsidyNote: string;
 
-  // Per-agent model params. Falls back to the global default MODEL/max_tokens
-  // in lib/anthropic.ts and the builder's own default when omitted.
+  // Per-agent model params. Falls back to the active provider's default model
+  // (see defaultModel() in lib/anthropic.ts) and the builder's own max_tokens
+  // default when omitted.
   model?: {
     speedToLead?: { model?: string; maxTokens?: number };
     quotation?: { model?: string; maxTokens?: number };

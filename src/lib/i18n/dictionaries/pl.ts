@@ -30,7 +30,7 @@ const pl = {
     copyright: "© 2026 LeadFlow AI. Dla firm instalacyjnych, które nie chcą oddawać zleceń konkurencji.",
   },
   hero: {
-    badge: "Agenci AI dla instalatorów fotowoltaiki i pomp ciepła",
+    badge: "Agenci AI dla firm instalacyjnych",
     titleBefore: "Koniec z leadami straconymi przez ",
     titleHighlight: "nieodebrany telefon",
     titleAfter: ".",
