@@ -157,12 +157,12 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .rise-in {
-  animation: rise-in 0.9s var(--ease-out-expo) both;
+  animation: rise-in 0.5s var(--ease-out-expo) both;
 }
-.rise-in-1 { animation-delay: 0.08s; }
-.rise-in-2 { animation-delay: 0.18s; }
-.rise-in-3 { animation-delay: 0.28s; }
-.rise-in-4 { animation-delay: 0.4s; }
+.rise-in-1 { animation-delay: 0.05s; }
+.rise-in-2 { animation-delay: 0.1s; }
+.rise-in-3 { animation-delay: 0.15s; }
+.rise-in-4 { animation-delay: 0.2s; }
 
 /* Form field — one consistent input treatment everywhere */
 .field {

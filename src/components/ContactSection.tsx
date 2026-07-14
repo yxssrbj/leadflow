@@ -69,7 +69,7 @@ export default function ContactSection({ dict }: { dict: Dictionary }) {
               key={c.label}
               href={c.href}
               data-reveal
-              data-reveal-delay={String(i * 0.1)}
+              data-reveal-delay={String(i * 0.05)}
               {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="group glass flex flex-col items-center gap-4 rounded-3xl p-8 text-center transition-all duration-500 hover:-translate-y-1.5 hover:border-ember-600/40"
             >

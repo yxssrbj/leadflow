@@ -201,7 +201,7 @@ function Problem({ dict }: { dict: Dictionary }) {
           {p.subtitle}
         </p>
 
-        <div data-reveal data-reveal-delay="0.1" className="mt-14 grid gap-4 sm:grid-cols-4">
+        <div data-reveal data-reveal-delay="0.05" className="mt-14 grid gap-4 sm:grid-cols-4">
           {dict.stats.map((s) => (
             <div key={s.label} className="glass rounded-2xl p-5 text-center">
               <p className="font-display text-2xl font-bold tracking-tight text-ember">{s.value}</p>
@@ -211,7 +211,7 @@ function Problem({ dict }: { dict: Dictionary }) {
         </div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          <div data-reveal data-reveal-delay="0.15" className="rounded-3xl border border-line p-7">
+          <div data-reveal data-reveal-delay="0.08" className="rounded-3xl border border-line p-7">
             <p className="text-xs font-bold tracking-[0.2em] text-low uppercase">{p.beforeLabel}</p>
             <ul className="mt-5 flex flex-col gap-3.5 text-sm leading-6 text-mid">
               {p.before.map((line) => (
@@ -224,7 +224,7 @@ function Problem({ dict }: { dict: Dictionary }) {
           </div>
           <div
             data-reveal
-            data-reveal-delay="0.25"
+            data-reveal-delay="0.12"
             className="rounded-3xl border border-ember-600/40 bg-ink-850 p-7 glow-ember"
           >
             <p className="text-xs font-bold tracking-[0.2em] text-ember-400 uppercase">{p.afterLabel}</p>
@@ -239,7 +239,7 @@ function Problem({ dict }: { dict: Dictionary }) {
           </div>
         </div>
 
-        <p data-reveal data-reveal-delay="0.3" className="mt-10 text-center text-base font-semibold text-hi">
+        <p data-reveal data-reveal-delay="0.15" className="mt-10 text-center text-base font-semibold text-hi">
           {p.result}
         </p>
       </div>
@@ -258,7 +258,7 @@ function HowItWorks({ dict }: { dict: Dictionary }) {
           {/* Connecting line */}
           <div aria-hidden className="hairline absolute top-6 right-[16%] left-[16%] hidden sm:block" />
           {dict.howItWorks.steps.map((s, i) => (
-            <div key={s.title} data-reveal data-reveal-delay={String(i * 0.12)} className="relative">
+            <div key={s.title} data-reveal data-reveal-delay={String(i * 0.06)} className="relative">
               <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-ember-600/40 bg-ink-900 font-display text-lg font-bold text-ember-400">
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -285,7 +285,7 @@ function Agents({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <div
               key={a.name}
               data-reveal
-              data-reveal-delay={String(i * 0.12)}
+              data-reveal-delay={String(i * 0.06)}
               className="group glass relative flex flex-col rounded-3xl p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-ember-600/40"
             >
               {/* Hover bloom */}
@@ -360,7 +360,7 @@ function Pricing({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <div
                 key={t.name}
                 data-reveal
-                data-reveal-delay={String(i * 0.12)}
+                data-reveal-delay={String(i * 0.06)}
                 className={`relative flex flex-col rounded-3xl p-8 transition-transform duration-500 hover:-translate-y-1.5 ${
                   highlight
                     ? "border border-ember-600/50 bg-ink-850 glow-ember lg:scale-[1.03]"
