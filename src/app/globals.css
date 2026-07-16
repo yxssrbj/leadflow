@@ -1,37 +1,92 @@
 @import "tailwindcss";
 
 /* ————————————————————————————————————————————————————————————————
-   LeadFlow AI — "Obsidian Signal" design system
-   One committed dark cinematic theme. Tokens first, utilities after.
+   LeadFlow AI design system — friendly, clean, two themes.
+
+   Built for non-technical service-business owners: white surfaces,
+   soft shadows, rounded corners, no tech-demo effects. Light is the
+   default; dark ([data-theme="dark"] on <html>, persisted by the
+   inline script in layout.tsx) is a soft charcoal — not a hacker
+   black — using the same token names.
+
+   Components only ever use the token utilities (ink/hi/mid/low/ember/
+   line + .card/.glass/.field), so both themes live entirely in the
+   variable blocks below.
    ———————————————————————————————————————————————————————————————— */
 
 :root {
-  /* Surfaces — obsidian scale */
-  --ink-950: #070709;
-  --ink-900: #0b0b0e;
-  --ink-850: #101014;
-  --ink-800: #16161c;
-  --ink-750: #1d1d24;
+  /* Surfaces — clean white scale (950 = page, 850 = elevated card) */
+  --ink-950: #ffffff;
+  --ink-900: #f7f6f4;
+  --ink-850: #ffffff;
+  --ink-800: #efedea;
+  --ink-750: #dcd9d4;
+
+  /* Text — warm near-black */
+  --text-hi: #211d18;
+  --text-mid: #5d564c;
+  --text-low: #98907f;
+
+  /* Accent — ember, deepened for contrast on light surfaces */
+  --ember-400: #d95510;
+  --ember-500: #f4741f;
+  --ember-600: #e35d0f;
+  --ember-700: #c74d0c;
+
+  /* Lines */
+  --line: rgba(33 29 24 / 0.10);
+  --line-strong: rgba(33 29 24 / 0.18);
+
+  /* Elevation — soft, business-like; no neon */
+  --shadow-card: 0 1px 2px rgba(33 29 24 / 0.05), 0 8px 24px rgba(33 29 24 / 0.06);
+  --shadow-card-strong: 0 2px 4px rgba(33 29 24 / 0.06), 0 12px 32px rgba(33 29 24 / 0.10);
+  --glow-ember-shadow: 0 6px 20px rgba(199 77 12 / 0.22);
+  --nav-shadow: 0 4px 24px rgba(33 29 24 / 0.08);
+
+  /* Solid card surfaces (legacy .glass names kept for call sites) */
+  --glass-bg: #ffffff;
+  --glass-strong-bg: rgba(255 255 255 / 0.92);
+  --field-bg: #ffffff;
+  --field-bg-focus: #ffffff;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 200ms;
+  --dur-slow: 700ms;
+}
+
+[data-theme="dark"] {
+  /* Surfaces — soft charcoal, not black */
+  --ink-950: #16181d;
+  --ink-900: #1b1e24;
+  --ink-850: #21252c;
+  --ink-800: #2a2f38;
+  --ink-750: #3a4049;
 
   /* Text */
-  --text-hi: #f4f3f1;
-  --text-mid: #a3a1a8;
-  --text-low: #6e6c76;
+  --text-hi: #f2f1ef;
+  --text-mid: #a8a49d;
+  --text-low: #757169;
 
-  /* Accent — molten ember */
+  /* Accent — ember, brightened for dark surfaces */
   --ember-400: #ffb35c;
   --ember-500: #ff8a3d;
   --ember-600: #ff6a1f;
   --ember-700: #e8551a;
 
   /* Lines */
-  --line: rgba(255 255 255 / 0.08);
-  --line-strong: rgba(255 255 255 / 0.14);
+  --line: rgba(255 255 255 / 0.09);
+  --line-strong: rgba(255 255 255 / 0.16);
 
-  /* Motion */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-fast: 200ms;
-  --dur-slow: 700ms;
+  --shadow-card: 0 1px 2px rgba(0 0 0 / 0.25), 0 8px 24px rgba(0 0 0 / 0.25);
+  --shadow-card-strong: 0 2px 4px rgba(0 0 0 / 0.3), 0 12px 32px rgba(0 0 0 / 0.35);
+  --glow-ember-shadow: 0 6px 20px rgba(255 106 31 / 0.18);
+  --nav-shadow: 0 4px 24px rgba(0 0 0 / 0.35);
+
+  --glass-bg: var(--ink-850);
+  --glass-strong-bg: rgba(27 30 36 / 0.95);
+  --field-bg: var(--ink-800);
+  --field-bg-focus: var(--ink-750);
 }
 
 @theme inline {
@@ -57,6 +112,10 @@
 html {
   scroll-behavior: smooth;
   background: var(--ink-950);
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
   color-scheme: dark;
 }
 
@@ -99,22 +158,22 @@ body {
 
 /* ————————————————————— utilities ————————————————————— */
 
-/* Frosted glass card */
+/* Card surfaces. The .glass names are kept because they're used across the
+   whole app, but the treatment is now a solid card with a soft shadow —
+   no backdrop blur; frosted glass read "tech demo", not "local business". */
 .glass {
-  background: rgba(255 255 255 / 0.03);
+  background: var(--glass-bg);
   border: 1px solid var(--line);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
 }
 
 .glass-strong {
-  background: rgba(16 16 20 / 0.72);
+  background: var(--glass-strong-bg);
   border: 1px solid var(--line);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: var(--shadow-card-strong);
 }
 
-/* Molten gradient text */
+/* Ember gradient text for the headline highlight */
 .text-ember {
   background: linear-gradient(100deg, var(--ember-400) 0%, var(--ember-600) 55%, var(--ember-700) 100%);
   -webkit-background-clip: text;
@@ -127,22 +186,9 @@ body {
   background: linear-gradient(135deg, var(--ember-500) 0%, var(--ember-600) 60%, var(--ember-700) 100%);
 }
 
-/* Soft outer glow for accented elements */
+/* Accent emphasis — a soft warm shadow in both themes (was a neon glow) */
 .glow-ember {
-  box-shadow:
-    0 0 24px rgba(255 106 31 / 0.28),
-    0 0 80px rgba(255 106 31 / 0.10);
-}
-
-/* Film grain — one fixed overlay, pure CSS noise via SVG data URI */
-.noise::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  box-shadow: var(--glow-ember-shadow);
 }
 
 /* Hairline divider with a fading gradient */
@@ -168,7 +214,7 @@ body {
 .field {
   border-radius: 0.75rem;
   border: 1px solid var(--line);
-  background: rgba(255 255 255 / 0.03);
+  background: var(--field-bg);
   padding: 0.625rem 1rem;
   font-size: 0.875rem;
   color: var(--text-hi);
@@ -183,20 +229,20 @@ body {
 .field:focus {
   border-color: var(--ember-500);
   outline: none;
-  background: rgba(255 255 255 / 0.05);
+  background: var(--field-bg-focus);
 }
 select.field option {
   background: var(--ink-850);
   color: var(--text-hi);
 }
 
-/* Slow ambient float for decorative layers */
-@keyframes drift {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -14px, 0); }
+/* Success-green text tuned per theme: Tailwind's emerald-300/400 are
+   dark-surface colors and unreadable on white, so light mode deepens them. */
+html:not([data-theme="dark"]) .text-emerald-300 {
+  color: #047857; /* emerald-700 */
 }
-.animate-drift {
-  animation: drift 7s ease-in-out infinite;
+html:not([data-theme="dark"]) .text-emerald-400 {
+  color: #059669; /* emerald-600 */
 }
 
 /* Typing dots */
@@ -210,15 +256,8 @@ select.field option {
 .typing-dot:nth-child(2) { animation-delay: 0.15s; }
 .typing-dot:nth-child(3) { animation-delay: 0.3s; }
 
-/* Preloader letter sweep */
-@keyframes preloader-bar {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-drift,
   .typing-dot {
     animation: none;
   }

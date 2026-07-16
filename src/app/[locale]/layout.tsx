@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "../globals.css";
+import InlineScript from "@/components/InlineScript";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MotionOrchestrator from "@/components/motion/MotionOrchestrator";
-import Preloader from "@/components/motion/Preloader";
 import { LOCALES, isLocale, type Locale } from "@/lib/i18n/locales";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { SITE_URL } from "@/lib/site";
@@ -20,11 +20,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Display face for headlines — geometric, slightly technical, pairs with Geist.
-const spaceGrotesk = Space_Grotesk({
+// Display face for headlines — rounded and approachable rather than
+// technical; the audience is tradespeople and clinic owners, not devs.
+const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-display",
   subsets: ["latin", "latin-ext"], // latin-ext covers Polish diacritics
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export function generateStaticParams() {
@@ -82,10 +83,23 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${plusJakarta.variable} h-full antialiased`}
+      // Server-rendered default; the head script swaps it to the stored theme
+      // before first paint, and suppressHydrationWarning accepts the changed
+      // value. Follows node_modules/next/dist/docs/01-app/02-guides/
+      // preventing-flash-before-hydration.md verbatim — the attribute must
+      // exist in the SSR output for the suppression to apply.
+      data-theme="light"
+      suppressHydrationWarning
     >
-      <body className="noise flex min-h-full flex-col bg-ink-950 text-hi">
-        <Preloader />
+      <head>
+        {/* Executes on hard loads only; on soft navigations (e.g. the locale
+            switcher re-rendering this layout) it renders inert — the theme
+            attribute already persists on <html>, and React would warn about a
+            client-rendered executable script. See components/InlineScript. */}
+        <InlineScript html='(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()' />
+      </head>
+      <body className="flex min-h-full flex-col bg-ink-950 text-hi">
         <MotionOrchestrator />
         <Nav locale={locale} dict={dict} />
         <main className="flex flex-1 flex-col">{children}</main>

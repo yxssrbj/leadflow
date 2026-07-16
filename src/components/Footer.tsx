@@ -63,14 +63,6 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
         <div className="hairline mt-14" />
         <p className="pt-6 text-center text-xs text-low">{dict.footer.copyright}</p>
       </div>
-
-      {/* Oversized ghost wordmark */}
-      <p
-        aria-hidden
-        className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 font-display text-[16vw] leading-none font-bold tracking-tight whitespace-nowrap text-white/[0.02] select-none"
-      >
-        {dict.nav.brand}
-      </p>
     </footer>
   );
 }

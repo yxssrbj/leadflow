@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 import type { Dictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/locales";
 
@@ -43,7 +44,7 @@ export default function Nav({ locale, dict }: { locale: Locale; dict: Dictionary
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || open ? "glass-strong shadow-[0_8px_40px_rgba(0,0,0,0.45)]" : "bg-transparent"
+        scrolled || open ? "glass-strong shadow-[var(--nav-shadow)]" : "bg-transparent"
       }`}
       style={{ borderBottom: scrolled || open ? "1px solid var(--line)" : "1px solid transparent" }}
     >
@@ -99,6 +100,8 @@ export default function Nav({ locale, dict }: { locale: Locale; dict: Dictionary
             ))}
           </span>
 
+          <ThemeToggle />
+
           <Link
             href={`/${locale}/demo`}
             className="ml-3 hidden rounded-full bg-ember px-4.5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:glow-ember hover:brightness-110 md:block"
@@ -140,7 +143,7 @@ export default function Nav({ locale, dict }: { locale: Locale; dict: Dictionary
                 href={l.href}
                 onClick={() => setOpen(false)}
                 style={{ transitionDelay: open ? `${80 + i * 60}ms` : "0ms" }}
-                className={`rounded-xl px-4 py-3.5 font-display text-2xl font-semibold text-hi transition-all duration-500 hover:bg-white/5 ${
+                className={`rounded-xl px-4 py-3.5 font-display text-2xl font-semibold text-hi transition-all duration-500 hover:bg-ink-800 ${
                   open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                 }`}
               >

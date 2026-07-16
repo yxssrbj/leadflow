@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContactSection from "@/components/ContactSection";
-import HeroCanvas from "@/components/home/HeroCanvas";
 import MagneticButton from "@/components/motion/MagneticButton";
 import { getDictionary, type Dictionary } from "@/lib/i18n/getDictionary";
 import { isLocale, type Locale } from "@/lib/i18n/locales";
@@ -31,19 +30,14 @@ function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const h = dict.hero;
   return (
     <section className="relative flex min-h-svh items-center overflow-hidden">
-      {/* Layered backdrop: particle field + ember bloom + vignette */}
-      <HeroCanvas />
+      {/* One soft warm wash behind the headline — calm, not cinematic */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 50% at 72% 30%, rgba(255,106,31,0.13) 0%, transparent 65%), radial-gradient(50% 60% at 15% 85%, rgba(255,138,61,0.06) 0%, transparent 60%)",
+            "radial-gradient(55% 45% at 75% 25%, rgba(244,116,31,0.08) 0%, transparent 65%)",
         }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink-950"
       />
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-6 pt-32 pb-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pt-24">
@@ -94,16 +88,6 @@ function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
         <HeroChatMock dict={dict} />
       </div>
-
-      {/* Scroll hint */}
-      <div
-        aria-hidden
-        className="rise-in rise-in-4 absolute bottom-7 left-1/2 hidden -translate-x-1/2 lg:block"
-      >
-        <span className="block h-10 w-px overflow-hidden bg-line-strong">
-          <span className="block h-4 w-px animate-drift bg-ember-500" />
-        </span>
-      </div>
     </section>
   );
 }
@@ -113,9 +97,8 @@ function HeroChatMock({ dict }: { dict: Dictionary }) {
   return (
     <div className="rise-in rise-in-3 relative mx-auto w-full max-w-sm">
       <p className="mb-3 text-center text-xs text-low">{dict.hero.disclaimer}</p>
-      <div aria-hidden className="absolute -inset-8 rounded-[2.5rem] bg-ember-600/15 blur-3xl" />
-      <div className="animate-drift">
-        <div className="glass-strong relative overflow-hidden rounded-3xl shadow-2xl">
+      <div>
+        <div className="glass-strong relative overflow-hidden rounded-3xl">
           <div className="flex items-center gap-3 border-b border-line px-5 py-4">
             <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-ember text-sm font-bold text-white">
               O
