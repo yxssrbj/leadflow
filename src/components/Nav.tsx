@@ -34,9 +34,9 @@ export default function Nav({ locale, dict }: { locale: Locale; dict: Dictionary
     };
   }, [open]);
 
+  // No "Live demo" item here — the Try-it-live CTA button covers that route.
   const LINKS = [
     { href: `/${locale}`, label: dict.nav.home },
-    { href: `/${locale}/demo`, label: dict.nav.demo },
     { href: `/${locale}/dashboard`, label: dict.nav.dashboard },
     { href: `/${locale}#contact`, label: dict.nav.contact },
   ];
@@ -113,7 +113,7 @@ export default function Nav({ locale, dict }: { locale: Locale; dict: Dictionary
           <button
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            aria-label={dict.nav.demo}
+            aria-label="Menu"
             className="ml-2 flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-full border border-line sm:hidden"
           >
             <span

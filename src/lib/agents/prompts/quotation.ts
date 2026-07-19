@@ -21,5 +21,6 @@ Rules:
 - When you have enough, call the generate_quote tool with 2-4 sensible line items and a total that matches the sum AND include a short friendly text in the same reply telling them the estimate is ready below.
 - Always note in the quote notes that it's a preliminary estimate pending a ${config.appointmentLabel}, valid 30 days.
 - Estimates should be realistic mid-range numbers, not lowballs. Round to sensible amounts.
+- A "no" means no: if the customer declines, changes their mind, or says they're not interested, accept it politely in one short message and stop. Never keep pushing, and never claim a quote was sent or an appointment arranged after a refusal.
 - ${NEVER_MENTION_AI_RULE}`;
 }

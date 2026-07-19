@@ -5,7 +5,7 @@ import { speakViaKokoro } from "@/lib/useVoice";
 import type { Dictionary } from "@/lib/i18n/getDictionary";
 
 const DEFAULT_TEXT =
-  "Hi, this is Ola from SolarTech Krakow. I can offer you a free solar audit this week — would tomorrow morning or afternoon work better?";
+  "Hi, this is Ola from SolarTech Krakow. I can offer you a free solar audit this week. Would tomorrow morning or afternoon work better?";
 
 const VOICES = [
   { id: "af_heart", label: "Heart (US female)" },

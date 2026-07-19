@@ -18,7 +18,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <HowItWorks dict={dict} />
       <Agents locale={locale} dict={dict} />
       <Pricing locale={locale} dict={dict} />
-      <FinalCta locale={locale} dict={dict} />
       <ContactSection dict={dict} />
     </div>
   );
@@ -47,6 +46,7 @@ function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember-500 opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ember-500" />
             </span>
+            <PolandFlag className="h-3 w-4 shrink-0 rounded-[2px]" />
             {h.badge}
           </span>
 
@@ -129,6 +129,17 @@ function HeroChatMock({ dict }: { dict: Dictionary }) {
         </div>
       </div>
     </div>
+  );
+}
+
+// Inline SVG instead of the 🇵🇱 emoji — Windows' font stack renders regional-
+// indicator flag emoji as literal "PL" letters instead of a flag glyph.
+function PolandFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 4 3" className={className} aria-hidden="true">
+      <rect width="4" height="3" fill="#fff" stroke="currentColor" strokeOpacity="0.15" strokeWidth="0.08" />
+      <rect width="4" height="1.5" y="1.5" fill="#dc143c" />
+    </svg>
   );
 }
 
@@ -222,7 +233,11 @@ function Problem({ dict }: { dict: Dictionary }) {
           </div>
         </div>
 
-        <p data-reveal data-reveal-delay="0.15" className="mt-10 text-center text-base font-semibold text-hi">
+        <p
+          data-reveal
+          data-reveal-delay="0.15"
+          className="mx-auto mt-10 w-fit max-w-2xl rounded-2xl border border-ember-500/30 bg-ember-600/10 px-7 py-4 text-center font-display text-lg font-semibold text-ember-400"
+        >
           {p.result}
         </p>
       </div>
@@ -384,41 +399,6 @@ function Pricing({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               </div>
             );
           })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ————————————————————— Final CTA ————————————————————— */
-
-function FinalCta({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  return (
-    <section className="relative overflow-hidden border-t border-line bg-ink-900">
-      <AmbientGlow position="50% 110%" size="55% 65%" opacity={0.16} />
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-9 px-6 py-32 text-center">
-        <h2
-          data-reveal
-          className="max-w-3xl font-display text-3xl leading-tight font-bold tracking-tight sm:text-5xl"
-        >
-          {dict.finalCta.title}
-        </h2>
-        <div data-reveal data-reveal-delay="0.15" className="flex flex-col items-center gap-5">
-          <MagneticButton strength={0.35}>
-            <Link
-              href={`/${locale}#contact`}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-ember px-9 py-4 text-sm font-semibold text-white transition-all duration-300 hover:glow-ember hover:brightness-110"
-            >
-              {dict.finalCta.cta}
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </Link>
-          </MagneticButton>
-          <Link
-            href={`/${locale}/demo`}
-            className="text-sm text-mid transition-colors duration-300 hover:text-ember-400"
-          >
-            {dict.finalCta.secondary}
-          </Link>
         </div>
       </div>
     </section>

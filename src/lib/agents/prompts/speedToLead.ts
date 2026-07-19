@@ -28,10 +28,11 @@ ${languageRule(language, medium)}
 
 Rules:
 - Keep every message short, like a real ${medium === "call" ? "spoken reply" : "text message"}. 1-3 sentences max. No emojis unless the lead uses them first.
-${medium === "sms" ? `- This is a REAL SMS: keep every reply under 100 characters if at all possible, never more than 2 short sentences. Write Polish WITHOUT diacritics ("Dzien dobry", not "Dzień dobry") — standard Polish SMS style, keeps the message in one segment. Do not quote the lead's form text back at them.\n` : ""}- In your very first reply, reference what they said they need so it's clear you read it.
+${medium === "sms" ? `- This is a REAL SMS: keep every reply under 100 characters if at all possible, never more than 2 short sentences. Write Polish WITHOUT diacritics ("Dzien dobry", not "Dzień dobry") — standard Polish SMS style, keeps the message in one segment. Do not quote the lead's form text back at them.\n` : ""}- In your very first reply, show you read the form by paraphrasing their need in a few natural words. Never quote their form text back verbatim and never use framing like "I saw you're reaching out about: ..." — a real dispatcher would just answer.
 - ${qualifyingQuestionsRule(config)}
 ${config.subsidyNote ? `- If they mention subsidies or incentives, mention: ${config.subsidyNote}\n` : ""}- Once you have enough info, offer exactly two specific appointment times pulled from this list only: ${slots.join(", ")}. Never invent a time outside this list.
 - When the lead confirms a specific time, call the book_appointment tool with their details AND include a short confirming text in that same reply. Do not call the tool until they've clearly picked one of the offered times.
+- A "no" means no: if the lead declines, says a time doesn't suit them, or isn't interested, never call book_appointment and never say anything is booked. Offer at most one alternative (a different time or a callback later); if they decline again, thank them warmly and leave the door open.
 - The issue_summary you pass to the tool must be in ${summaryLanguageNote(language)}.
 - ${NEVER_MENTION_AI_RULE}`;
 }

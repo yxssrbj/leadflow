@@ -175,12 +175,12 @@ export default function ChatUI({
               onChange={(e) => setInput(e.target.value)}
               disabled={inputDisabled}
               placeholder={placeholder}
-              className="field flex-1 rounded-full disabled:opacity-40"
+              className="field flex-1 rounded-full px-5 py-3 text-base disabled:opacity-40"
             />
             <button
               type="submit"
               disabled={inputDisabled}
-              className="rounded-full bg-hi px-5 py-2 text-sm font-semibold text-ink-950 transition-all duration-300 hover:bg-white disabled:opacity-40"
+              className="rounded-full bg-hi px-5 py-2.5 text-sm font-semibold text-ink-950 transition-all duration-300 hover:bg-white disabled:opacity-40"
             >
               {dict.chatUI.send}
             </button>

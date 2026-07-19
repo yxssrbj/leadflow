@@ -33,6 +33,15 @@ export default function DemoTabs({
   business: DemoBusiness;
 }) {
   const [active, setActive] = useState<DemoTab>(initialTab);
+
+  // ?tab= navigation (footer/agent-card links) re-renders the server page with
+  // a new initialTab, but this client component survives the soft navigation —
+  // adopt the prop change or the tab silently stays put.
+  const [lastInitial, setLastInitial] = useState(initialTab);
+  if (lastInitial !== initialTab) {
+    setLastInitial(initialTab);
+    setActive(initialTab);
+  }
   const tabs = dict.demoTabs as { id: DemoTab; label: string; agent: string; blurb: string }[];
   const current = tabs.find((t) => t.id === active)!;
   const opened = useRef(false);

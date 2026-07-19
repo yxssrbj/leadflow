@@ -50,7 +50,7 @@ export function nextBusinessSlots(language: "pl" | "en" = "pl"): string[] {
   while (slots.length < 6) {
     d.setDate(d.getDate() + 1);
     if (d.getDay() === 0 || d.getDay() === 6) continue;
-    const label = d.toLocaleDateString(locale, { weekday: "short", day: "numeric", month: "short" });
+    const label = d.toLocaleDateString(locale, { weekday: "short", day: "numeric", month: "short", year: "numeric" });
     slots.push(`${label} · 9:00`, `${label} · 13:30`);
   }
   return slots;
