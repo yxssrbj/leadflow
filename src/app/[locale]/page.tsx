@@ -28,7 +28,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const h = dict.hero;
   return (
-    <section className="relative flex min-h-svh items-center overflow-hidden">
+    <section className="relative flex items-center overflow-hidden">
       {/* One soft warm wash behind the headline — calm, not cinematic */}
       <div
         aria-hidden
@@ -46,8 +46,8 @@ function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember-500 opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ember-500" />
             </span>
-            <PolandFlag className="h-3 w-4 shrink-0 rounded-[2px]" />
             {h.badge}
+            <PolandFlag className="h-3 w-4 shrink-0 rounded-[2px]" />
           </span>
 
           <h1 className="rise-in rise-in-1 font-display text-[2.75rem] leading-[1.04] font-bold tracking-tight sm:text-6xl lg:text-[4.25rem]">

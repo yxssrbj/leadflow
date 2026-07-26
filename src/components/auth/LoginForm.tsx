@@ -84,9 +84,12 @@ export default function LoginForm({ locale, dict }: { locale: Locale; dict: Dict
         <button
           type="button"
           onClick={() => setMode(isLogin ? "register" : "login")}
-          className="mt-4 w-full text-center text-xs text-mid transition-colors duration-300 hover:text-hi"
+          className="mt-4 w-full text-center text-xs text-mid"
         >
-          {isLogin ? t.toRegister : t.toLogin}
+          {isLogin ? t.toRegisterPrefix : t.toLoginPrefix}
+          <span className="font-semibold text-ember-400 underline-offset-4 hover:underline">
+            {isLogin ? t.toRegisterLink : t.toLoginLink}
+          </span>
         </button>
       </form>
     </div>

@@ -30,8 +30,10 @@ const en: typeof pl = {
     signingIn: "Signing in…",
     register: "Create account",
     registering: "Creating account…",
-    toRegister: "No account yet? Create one",
-    toLogin: "Already have an account? Sign in",
+    toRegisterPrefix: "No account yet? ",
+    toRegisterLink: "Create one",
+    toLoginPrefix: "Already have an account? ",
+    toLoginLink: "Sign in",
   },
   footer: {
     tagline:
@@ -58,7 +60,6 @@ const en: typeof pl = {
     ctaDemo: "Try the live demo",
     trust: [
       "Immediate replies, 24/7",
-      "Set up in days",
       "30-day trial with money-back guarantee",
     ],
     disclaimer: "This demo is the real product. Live AI, real conversation, real booking.",
@@ -175,22 +176,22 @@ const en: typeof pl = {
     tiers: [
       {
         name: "Starter",
-        price: "356 zł",
-        setup: "497 zł setup",
+        price: "1,500 zł",
+        setup: "3,000 zł setup",
         desc: "The speed-to-lead essential for a single crew.",
         features: ["Speed-to-lead agent (Ola)", "Web form + missed-call capture", "Calendar booking", "Leads dashboard"],
       },
       {
         name: "Growth",
-        price: "468 zł",
-        setup: "589 zł setup",
+        price: "2,500 zł",
+        setup: "4,500 zł setup",
         desc: "Add instant quotes and win customers who are comparing offers.",
         features: ["Everything in Starter", "Quotation agent (Kuba)", "Pricing guide tuned to your business", "Quote tracking and follow-up"],
       },
       {
         name: "Full Pipeline",
-        price: "572 zł",
-        setup: "638 zł setup",
+        price: "3,500 zł",
+        setup: "6,000 zł setup",
         desc: "The complete funnel, including reviving dead leads.",
         features: ["Everything in Growth", "Outbound revival agent (Marek)", "Works your dead CRM leads", "Priority support and tuning"],
       },

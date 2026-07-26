@@ -28,8 +28,10 @@ const pl = {
     signingIn: "Logowanie…",
     register: "Załóż konto",
     registering: "Zakładanie konta…",
-    toRegister: "Nie masz konta? Załóż je",
-    toLogin: "Masz już konto? Zaloguj się",
+    toRegisterPrefix: "Nie masz konta? ",
+    toRegisterLink: "Załóż je",
+    toLoginPrefix: "Masz już konto? ",
+    toLoginLink: "Zaloguj się",
   },
   footer: {
     tagline:
@@ -56,7 +58,6 @@ const pl = {
     ctaDemo: "Wypróbuj demo na żywo",
     trust: [
       "Natychmiastowa odpowiedź, 24/7",
-      "Wdrożenie w kilka dni",
       "30-dniowy okres próbny z gwarancją zwrotu",
     ],
     disclaimer: "To demo to prawdziwy produkt. Żywe AI, prawdziwa rozmowa, prawdziwe umówione spotkanie.",

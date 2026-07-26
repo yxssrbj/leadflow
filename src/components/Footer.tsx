@@ -37,7 +37,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-mid transition-colors duration-300 hover:text-ember-400"
+                  className="text-mid underline-offset-4 transition-colors duration-300 hover:text-ember-400 hover:underline"
                 >
                   {l.label}
                 </Link>
@@ -51,7 +51,7 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-mid transition-colors duration-300 hover:text-ember-400"
+                  className="text-mid underline-offset-4 transition-colors duration-300 hover:text-ember-400 hover:underline"
                 >
                   {l.label}
                 </Link>
